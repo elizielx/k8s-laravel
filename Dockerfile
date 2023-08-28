@@ -66,11 +66,13 @@ COPY --chown=${user}:${user} --from=build /usr/src/app/.env ./.env
 COPY --chown=${user}:${user} --from=build /usr/src/app/artisan ./artisan
 
 # Make artisan executable
+# NOTE: Adding executable permission to 'artisan' temporarily until it's confirmed as unnecessary.
 RUN chmod +x ./artisan
 
 # Expose port 3000
 EXPOSE 3000
 
+# Change current user to ${user}
 USER ${user}
 
 # Start
