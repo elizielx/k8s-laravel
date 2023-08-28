@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+    app:
+        build:
+            args:
+                user: aeviterna
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: k8s-laravel
+        container_name: k8s-laravel-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - k8s-laravel-app
+networks:
+    k8s-laravel-app:
+        driver: bridge
